@@ -1,5 +1,216 @@
-% 08.07.2016 06:00 CET ah
+% 25.07.2017 23:43 bh
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+						PAML
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+@inproceedings{wainwright2012paml,
+	title={Privacy aware learning},
+	author={Wainwright, Martin J and Jordan, Michael I and Duchi, John C},
+	booktitle={Advances in Neural Information Processing Systems},
+	pages={1430--1438},
+	year={2012}
+}
+
+@inproceedings{malle2016right,
+	title={The right to be forgotten: towards machine learning on perturbed knowledge bases},
+	author={Malle, Bernd and Kieseberg, Peter and Weippl, Edgar and Holzinger, Andreas},
+	booktitle={International Conference on Availability, Reliability, and Security},
+	pages={251--266},
+	year={2016},
+	organization={Springer}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		interactive Machine Learning
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+@incollection{iMLExperiment,
+	year = {2016},
+	author = {Holzinger, A and Plass, M and Holzinger, K and Crisan, GC and Pintea, CM and Palade, V },
+	title = {Towards interactive Machine Learning (iML): Applying Ant Colony Algorithms to solve the Traveling Salesman Problem with the Human-in-the-Loop approach},
+	booktitle = { IFIP International Cross Domain Conference and Workshop (CD-ARES)},
+	publisher = {Springer},
+	address = {Heidelberg, Berlin, New York},
+	pages = {81-95},
+	abstract = {Most Machine Learning (ML) researchers focus on automatic Machine Learning (aML) where great advances have been made, for example, in speech recognition, recommender systems, or autonomous vehicles. Automatic approaches greatly benefit from the availability of "big data". However, sometimes, for example in health informatics, we are confronted not a small number of data sets or rare events, and with complex problems where aML-approaches fail or deliver unsatisfactory results. Here, interactive Machine Learning (iML) may be of help and the "human-in-the-loop" approach may be beneficial in solving computationally hard problems, where human expertise can help to reduce an exponential search space through heuristics. <br/>In this paper, experiments are discussed which help to evaluate the effectiveness of the iML-"human-in-the-loop" approach, particularly in opening the "black box", thereby enabling a human to directly and indirectly manipulating and interacting with an algorithm. For this purpose, we selected the Ant Colony Optimization (ACO) framework, and use it on the Traveling Salesman Problem (TSP) which is of high importance in solving many practical problems in health informatics, e.g. in the study of proteins.}
+}
+
+@article{Holzinger:2016:iML,
+	year = {2016},
+	author = {Holzinger, Andreas},
+	title = {Interactive Machine Learning for Health Informatics: When do we need the human-in-the-loop?},
+	journal = {Springer Brain Informatics (BRIN)},
+	volume = {3},
+	number = {2},
+	pages = {119-131},
+	abstract = {Machine learning (ML) is the fastest growing field in computer science, and health informatics is amongst the greatest challenges. The goal of ML is to develop algorithms which can learn and improve over time and can be used for predictions. Most ML researchers concentrate on automatic Machine Learning (aML), where great advances have been made, for example, in speech recognition, recommender systems, or autonomous vehicles. Automatic approaches greatly benefit from big data with many training sets. However, in the health domain, sometimes we are confronted with a small number of data sets or rare events, where aML-approaches suffer of insufficient training samples. Here interactive Machine Learning (iML) may be of help, having its roots in Reinforcement Learning (RL), Preference Learning (PL) and Active Learning (AL). The term iML is not yet well used, so we define it as algorithms that can interact with agents and can optimize their learning behaviour through these interactions, where the agents can also be human. This human-in-the-loop can be beneficial in solving computationally hard problems, e.g., subspace clustering, protein folding, or k-anonymization of health data, where human expertise can help to reduce an exponential search space through heuristic selection of samples. Therefore, what would otherwise be an NP-hard problem, reduces greatly in complexity through the input and the assistance of a human agent involved in the learning phase.},
+	keywords = {interactive Machine learning, health informatics},
+	doi = {10.1007/s40708-016-0042-6},
+	url = {http://dx.doi.org/10.1007/s40708-016-0042-6}
+}
+
+@article{Kieseberg:2016:Doctor-in-the-Loop,
+	year = {2016},
+	author = {Kieseberg, Peter and Malle, Bernd and Frühwirt, Peter and Weippl, Edgar and Holzinger, Andreas},
+	title = {A tamper-proof audit and control system for the doctor in the loop},
+	journal = {Brain Informatics},
+	pages = {1-11},
+	abstract = {The “doctor in the loop” is a new paradigm in information-driven medicine, picturing the doctor as authority inside a loop supplying an expert system with information on actual patients, treatment results, and possible additional (side-)effects, including general information in order to enhance data-driven medical science, as well as giving back treatment advice to the doctor himself. While this approach can be very beneficial for new medical approaches like P4 medicine (personal, predictive, preventive, and participatory), it also relies heavily on the authenticity of the data and thus increases the need for secure and reliable databases. In this paper, we propose a solution in order to protect the doctor in the loop against responsibility derived from manipulated data, thus enabling this new paradigm to gain acceptance in the medical community. This work is an extension of the conference paper Kieseberg et al. (Brain Informatics and Health, 2015), which includes extensions to the original concept.},
+	doi = {10.1007/s40708-016-0046-2},
+	url = {http://dx.doi.org/10.1007/s40708-016-0046-2}
+}
+
+@article{Xiao2009,
+	abstract = {There has been much recent work on algorithms for limiting disclosure in data publishing, however they have not been put to use in any toolkit for practicioners. We will demonstrate CAT, the Cornell Anonymization Toolkit, designed for interactive anonymization. CAT has an interface that is easy to use; it guides users through the process of preparing a dataset for publication while limiting disclosure through the identification of records that have high risk under various attacker models.},
+	author = {Xiao, Xiaokui and Wang, Guozhang and Gehrke, Johannes},
+	doi = {10.1145/1559845.1559979},
+	file = {:home/bernd/Dropbox/hotstuff/iML/Interactive Anonymization of Sensitive Data.pdf:pdf},
+	isbn = {9781605585512},
+	journal = {Proceedings of the 35th SIGMOD international conference on Management of data - SIGMOD '09},
+	keywords = {data anonymization,l -diversity},
+	pages = {1051},
+	title = {{Interactive anonymization of sensitive data}},
+	url = {http://dl.acm.org/citation.cfm?id=1559845.1559979},
+	year = {2009}
+}
+
+@article{Amershi2012,
+	abstract = {We present ReGroup, a novel end-user interactive machine learning system for helping people create custom, on demand groups in online social networks. As a person adds members to a group, ReGroup iteratively learns a probabilistic model of group membership specific to that group. ReGroup then uses its currently learned model to suggest additional members and group characteristics for filtering. Our evaluation shows that ReGroup is effective for helping people create large and varied groups, whereas traditional methods (searching by name or selecting from an alphabetical list) are better suited for small groups whose members can be easily recalled by name. By facilitating on demand group creation, ReGroup can enable in-context sharing and potentially encourage better online privacy practices. In addition, applying interactive machine learning to social network group creation introduces several challenges for designing effective end-user interaction with machine learning. We identify these challenges and discuss how we address them in ReGroup.},
+	author = {Amershi, Saleema and Fogarty, James and Weld, Daniel},
+	doi = {10.1145/2207676.2207680},
+	file = {:home/bernd/Dropbox/hotstuff/iML/ReGroup$\backslash$: Interactive Machine Learning for On-Demand Group Creation in Social Networks.pdf:pdf},
+	isbn = {9781450310154},
+	journal = {Proceedings of the 2012 ACM annual conference on Human Factors in Computing Systems - CHI '12},
+	pages = {21},
+	title = {{ReGroup: interactive machine learning for on-demand group creation in social networks}},
+	url = {http://www.cs.washington.edu/homes/samershi/papers/amershiCHI2012{\_}ReGroup.pdf{\%}5Cnhttp://dl.acm.org/citation.cfm?doid=2207676.2207680},
+	year = {2012}
+}
+
+@article{Fiebrink2009,
+	abstract = {Supervised learning methods have long been used to allow musical interface designers to generate new mappings by example. We propose a method for harnessing machine learning algorithms within a radically interactive paradigm, in which the designer may repeatedly generate examples, train a learner, evaluate outcomes, and modify parameters in real-time within a single software environment. We describe our meta-instrument, the Wekinator, which allows a user to engage in on-the-fly learning using arbitrary control modalities and sound synthesis environments. We provide details regarding the system implementation and discuss our experiences using the Wekinator for experimentation and performance.},
+	author = {Fiebrink, R. and Trueman, D. and Cook, P.R.},
+	file = {:home/bernd/Dropbox/hotstuff/iML/A Meta-Instrument for Interactive, On-the-fly Machine Learning.pdf:pdf},
+	journal = {Proc. NIME},
+	keywords = {and he does it,any code,audience,in front of an,joe does all of,live,machine learning,mapping,minutes,on stage during a,performance,this in a few,tools,without writing},
+	pages = {3},
+	title = {{A metainstrument for interactive, on-the-fly machine learning}},
+	url = {http://www.cs.dartmouth.edu/{~}cs104/BodyPartRecognition.pdf{\%}5Cnhttp://www.cs.princeton.edu/{~}fiebrink/publications/FiebrinkTruemanCook{\_}NIME2009.pdf},
+	volume = {2},
+	year = {2009}
+}
+
+@article{Moque2012,
+	abstract = {One of the most important inputs for medical research is the information registered in electronic medical records. This information typically contains sensitive data that must be preserved in order to be used for research or educational purposes, depending on the regulations of each country and institution. In order to assure confidentiality of data, different techniques can be used to remove basic identifiers (e.g. names, ids); however, these techniques can be easily bypassed by attackers who know the information that can act as pseudo–identifiers of patients (e.g. birth dates, gender). Although these pseudo–identifiers can also be removed, the information they contain is valuable for medical research. To face this problem, different methods that allow minimizing the risk of sharing confidential information have been proposed. The interactive use of anonymization algorithms for electronic medical records is the main contribution of this paper, dubbed AnonymousData.co: a proposal for anonymization of electronic health records.},
+	author = {Moque, Carlos and Pomares, Alexandra and Gonzalez, Rafael},
+	doi = {10.1016/j.protcy.2012.09.082},
+	file = {:home/bernd/Dropbox/hotstuff/iML/AnonymousDataco - interactive Anonym of EHRs.pdf:pdf},
+	isbn = {9781466636675},
+	issn = {22120173},
+	journal = {Procedia Technology},
+	keywords = {Anonymization,Data Mining,Information Loss,k–anonymity},
+	pages = {743--752},
+	title = {{AnonymousData.co: A Proposal for Interactive Anonymization of Electronic Medical Records}},
+	url = {http://www.sciencedirect.com/science/article/pii/S2212017312005130},
+	volume = {5},
+	year = {2012}
+}
+
+@article{Wallace2012,
+	abstract = {Medical researchers looking for evidence pertinent to a specific clinical$\backslash$nquestion must navigate an increasingly voluminous corpus of published$\backslash$nliterature. This data deluge has motivated the development of machine$\backslash$nlearning and data mining technologies to facilitate efficient biomedical$\backslash$nresearch. Despite the obvious labor-saving potential of these technologies$\backslash$nand the concomitant academic interest therein, however, adoption$\backslash$nof machine learning techniques by medical researchers has been relatively$\backslash$nsluggish. One explanation for this is that while many machine learning$\backslash$nmethods have been proposed and retrospectively evaluated, they are$\backslash$nrarely (if ever) actually made accessible to the practitioners whom$\backslash$nthey would benefit. In this work, we describe the ongoing development$\backslash$nof an end-to-end interactive machine learning system at the Tufts$\backslash$nEvidence-based Practice Center. More specifically, we have developed$\backslash$nabstrackr, an online tool for the task of citation screening for$\backslash$nsystematic reviews. This tool provides an interface to our machine$\backslash$nlearning methods. The main aim of this work is to provide a case$\backslash$nstudy in deploying cutting-edge machine learning methods that will$\backslash$nactually be used by experts in a clinical research setting.},
+	author = {Wallace, Byron C. and Small, Kevin and Brodley, Carla E. and Lau, Joseph and Trikalinos, Thomas a.},
+	doi = {10.1145/2110363.2110464},
+	file = {:home/bernd/Dropbox/hotstuff/iML/Deploying an Interactive Machine Learning System in an Evidence-Based Practice Center.pdf:pdf},
+	isbn = {9781450307819},
+	journal = {Proceedings of the 2nd ACM SIGHIT symposium on International health informatics - IHI '12},
+	pages = {819},
+	title = {{Deploying an interactive machine learning system in an evidence-based practice center}},
+	url = {http://dl.acm.org/citation.cfm?doid=2110363.2110464},
+	year = {2012}
+}
+
+@article{Dwork2014,
+	abstract = {The Algorithmic Foundations of Differential Privacy},
+	author = {Dwork, Cynthia and Roth, Aaron},
+	doi = {10.1561/0400000042},
+	file = {:home/bernd/Dropbox/hotstuff/iML/differential{\_}privacy.pdf:pdf},
+	isbn = {9781601988188},
+	issn = {15513068},
+	journal = {Foundations and Trends in Theoretical Computer Science},
+	number = {2013},
+	pages = {211--407},
+	pmid = {21455981},
+	title = {{The Algorithmic Foundations of Differential Privacy}},
+	volume = {9},
+	year = {2014}
+}
+
+@article{WARE2001,
+	abstract = {According to standard procedure, building a classifier using machine learning is a fully automated process that follows the preparation of training data by a domain expert. In contrast, interactive machine learning engages users in actually generating the classifier themselves. This offers a natural way of integrating background knowledge into the modelling stage—as long as interactive tools can be designed that support efficient and effective communication. This paper shows that appropriate techniques can empower users to create models that compete with classifiers built by state-of-the-art learning algorithms. It demonstrates that users—even users who are not domain experts—can often construct good classifiers, without any help from a learning algorithm, using a simple two-dimensional visual interface. Experiments on real data demonstrate that, not surprisingly, success hinges on the domain: if a few attributes can support good predictions, users generate accurate classifiers, whereas domains with many high-order attribute interactions favour standard machine learning techniques. We also present an artificial example where domain knowledge allows an “expert user” to create a much more accurate model than automatic learning algorithms. These results indicate that our system has the potential to produce highly accurate classifiers in the hands of a domain expert who has a strong interest in the domain and therefore some insights into how to partition the data. Moreover, small expert-defined models offer the additional advantage that they will generally be more intelligible than those generated by automatic techniques.},
+	author = {WARE, MALCOLM and FRANK, EIBE and HOLMES, GEOFFREY and HALL, MARK and WITTEN, IAN H},
+	doi = {10.1006/ijhc.2001.0499},
+	file = {:home/bernd/Dropbox/hotstuff/iML/iML - letting users build classifiers.pdf:pdf},
+	issn = {10715819},
+	journal = {International Journal of Human-Computer Studies},
+	keywords = {classification,decision trees,interactive learning,visualization.},
+	number = {3},
+	pages = {281--292},
+	title = {{Interactive machine learning: letting users build classifiers}},
+	url = {http://www.sciencedirect.com/science/article/pii/S1071581901904999},
+	volume = {55},
+	year = {2001}
+}
+
+@article{Loh2010,
+	abstract = {This paper focuses on a domain-driven data mining outsourcing scenario whereby a data owner publishes data to an application service provider who returns mining results. To ensure data privacy against an un-trusted party, anonymization, a widely used technique capable of preserving true attribute values and supporting various data mining algorithms is required. Several issues emerge when anonymization is applied in a real world outsourcing scenario. The majority of methods have focused on the traditional data mining paradigm, therefore they do not implement domain knowledge nor optimize data for domain-driven usage. Furthermore, existing techniques are mostly non-interactive in nature, providing little control to users while assuming their natural capability of producing Domain Generalization Hierarchies (DGH). Moreover, previous utility metrics have not considered attribute correlations during generalization. To successfully obtain optimal data privacy and actionable patterns in a real world setting, these concerns need to be addressed. This paper proposes an anonymization framework for aiding users in a domain-driven data mining outsourcing scenario. The framework involves several components designed to anonymize data while preserving meaningful or actionable patterns that can be discovered after mining. In contrast with existing works for traditional data-mining, this framework integrates domain ontology knowledge during DGH creation to retain value meanings after anonymization. In addition, users can implement constraints based on their mining tasks thereby controlling how data generalization is performed. Finally, attribute correlations are calculated to ensure preservation of important features. Preliminary experiments show that an ontology-based DGH manages to preserve semantic meaning after attribute generalization. Also, using Chi-Square as a correlation measure can possibly improve attribute selection before generalization.},
+	author = {Loh, Brian C.S. and Then, Patrick H.H.},
+	doi = {10.1109/ISDPE.2010.7},
+	file = {:home/bernd/Dropbox/hotstuff/iML/Ontology-Enhanced Interactive Anonymization in Domain-Driven Data Mining Outsourcing.pdf:pdf},
+	isbn = {9780769542034},
+	journal = {Proceedings - 2nd International Symposium on Data, Privacy, and E-Commerce, ISDPE 2010},
+	keywords = {Anonymization,Data publishing,Domain-driven data mining,Outsourcing,Privacy},
+	number = {June},
+	pages = {9--14},
+	title = {{Ontology-enhanced interactive anonymization in domain-driven data mining outsourcing}},
+	year = {2010}
+}
+
+@article{Amershi2014,
+	abstract = {Intelligent systems that learn interactively from their end-users are quickly becoming widespread. Until recently, this progress has been fueled mostly by advances in machine learning; however, more and more researchers are realizing the importance of studying users of these systems. In this article we promote this approach and demonstrate how it can result in better user experiences and more effective learning systems. We present a number of case studies that characterize the impact of interactivity, demonstrate ways in which some existing systems fail to account for the user, and explore new ways for learning systems to interact with their users. We argue that the design process for interactive machine learning systems should involve users at all stages: explorations that reveal human interaction patterns and inspire novel interaction methods, as well as refinement stages to tune details of the interface and choose among alternatives. After giving a glimpse of the progress that has been made so far, we discuss the challenges that we face in moving the field forward.},
+	author = {Amershi, Saleema and Cakmak, Maya and Knox, William Bradley and Kulesza, Todd},
+	doi = {10.1609/aimag.v35i4.2513},
+	file = {:home/bernd/Dropbox/hotstuff/iML/Power to the People - The Role of Humans in Interactive Machine Learning.pdf:pdf},
+	issn = {0738-4602},
+	journal = {AI Magazine},
+	keywords = {Interactive Machine Learning},
+	number = {4},
+	pages = {105--120},
+	title = {{Power to the People: The Role of Humans in Interactive Machine Learning}},
+	url = {http://aaaipress.org/ojs/index.php/aimagazine/article/view/2513},
+	volume = {35},
+	year = {2014}
+}
+
+@article{Chaudhuri2008,
+	abstract = {This paper addresses the important tradeoff between privacy and learnability, when designing algorithms for learning from private databases. We focus on privacy-preserving logistic regression. First we apply an idea of Dwork et al. [6] to design a privacy-preserving logistic regression algorithm. This involves bound-ing the sensitivity of regularized logistic regression, and perturbing the learned classifier with noise proportional to the sensitivity. We then provide a privacy-preserving regularized logistic regression algorithm based on a new privacy-preserving technique: solving a perturbed optimization problem. We prove that our algorithm preserves privacy in the model due to [6]. We provide learning guarantees for both algorithms, which are tighter for our new algorithm, in cases in which one would typically apply logistic regression. Ex-periments demonstrate improved learning performance of our method, versus the sensitivity method. Our privacy-preserving technique does not depend on the sen-sitivity of the function, and extends easily to a class of convex loss functions. Our work also reveals an interesting connection between regularization and privacy.},
+	author = {Chaudhuri, Kamalika and Monteleoni, Claire},
+	doi = {10.12720/jait.6.3.88-95},
+	file = {:home/bernd/Dropbox/hotstuff/iML/Privacy-preserving logistic regression.pdf:pdf},
+	isbn = {9781605609492},
+	issn = {17982340},
+	journal = {Advances in Neural Information Processing Systems},
+	pages = {289--296},
+	title = {{Privacy-preserving logistic regression}},
+	year = {2008}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				THE OLD ONES...
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 @article{DuchiJordan:2014:PrivacyAwareLearning,
    year = {2014},
    author = {Duchi, John C and Jordan, Michael I and Wainwright, Martin J},
@@ -11,8 +222,6 @@
    abstract = {We study statistical risk minimization problems under a privacy model in which the data is kept confidential even from the learner. In this local privacy framework, we establish sharp upper and lower bounds on the convergence rates of statistical estimation procedures. As a consequence, we exhibit a precise tradeoff between the amount of privacy the data preserves and the utility, as measured by convergence rate, of any statistical estimator or learning procedure.},
    doi = {10.1145/2666468}
 }
-
-
 
 @article{Zhou:2008:SurveyAnonNetwork,
    year = {2008},
@@ -26,22 +235,6 @@
 }
 
 
-
-
-@incollection{iMLExperiment,
-   year = {2016},
-   author = {Holzinger, A and Plass, M and Holzinger, K and Crisan, GC and Pintea, CM and Palade, V },
-   title = {Towards interactive Machine Learning (iML): Applying Ant Colony Algorithms to solve the Traveling Salesman Problem with the Human-in-the-Loop approach},
-   booktitle = { IFIP International Cross Domain Conference and Workshop (CD-ARES)},
-   publisher = {Springer},
-   address = {Heidelberg, Berlin, New York},
-   pages = {in print},
-   abstract = {Most Machine Learning (ML) researchers focus on automatic Machine Learning (aML) where great advances have been made, for example, in speech recognition, recommender systems, or autonomous vehicles. Automatic approaches greatly benefit from the availability of "big data". However, sometimes, for example in health informatics, we are confronted not a small number of data sets or rare events, and with complex problems where aML-approaches fail or deliver unsatisfactory results. Here, interactive Machine Learning (iML) may be of help and the "human-in-the-loop" approach may be beneficial in solving computationally hard problems, where human expertise can help to reduce an exponential search space through heuristics. <br/>In this paper, experiments are discussed which help to evaluate the effectiveness of the iML-"human-in-the-loop" approach, particularly in opening the "black box", thereby enabling a human to directly and indirectly manipulating and interacting with an algorithm. For this purpose, we selected the Ant Colony Optimization (ACO) framework, and use it on the Traveling Salesman Problem (TSP) which is of high importance in solving many practical problems in health informatics, e.g. in the study of proteins.}
-}
-
-
-
-
 @article{Zheng:2013:reidentification,
    year = {2013},
    author = {Zheng, Wei-Shi and Gong, Shaogang and Xiang, Tao},
@@ -52,7 +245,6 @@
    pages = {653-668},
    abstract = {Matching people across nonoverlapping camera views at different locations and different times, known as person reidentification, is both a hard and important problem for associating behavior of people observed in a large distributed space over a prolonged period of time. Person reidentification is fundamentally challenging because of the large visual appearance changes caused by variations in view angle, lighting, background clutter, and occlusion. To address these challenges, most previous approaches aim to model and extract distinctive and reliable visual features. However, seeking an optimal and robust similarity measure that quantifies a wide range of features against realistic viewing conditions from a distance is still an open and unsolved problem for person reidentification. In this paper, we formulate person reidentification as a relative distance comparison (RDC) learning problem in order to learn the optimal similarity measure between a pair of person images. This approach avoids treating all features indiscriminately and does not assume the existence of some universally distinctive and reliable features. To that end, a novel relative distance comparison model is introduced. The model is formulated to maximize the likelihood of a pair of true matches having a relatively smaller distance than that of a wrong match pair in a soft discriminant manner. Moreover, in order to maintain the tractability of the model in large scale learning, we further develop an ensemble RDC model. Extensive experiments on three publicly available benchmarking datasets are carried out to demonstrate the clear superiority of the proposed RDC models over related popular person reidentification techniques. The results also show that the new RDC models are more robust against visual appearance changes and less susceptible to model overfitting compared to other related existing models.}
 }
-
 
 @article{NergizClifton:2010:Delta-Presence,
    year = {2010},
@@ -67,7 +259,6 @@
    doi = {10.1109/tkde.2009.125}
 }
 
-
 @inproceedings{LiEtAl:2007:t-closeness,
    year = {2007},
    author = {Li, Ninghui and Li, Tiancheng and Venkatasubramanian, Suresh},
@@ -78,7 +269,6 @@
    abstract = {The k-anonymity privacy requirement for publishing microdata requires that each equivalence class (i.e., a set of records that are indistinguishable from each other with respect to certain "identifying" attributes) contains at least k records. Recently, several authors have recognized that k-anonymity cannot prevent attribute disclosure. The notion of l-diversity has been proposed to address this; l-diversity requires that each equivalence class has at least l well-represented values for each sensitive attribute. In this paper we show that l-diversity has a number of limitations. In particular, it is neither necessary nor sufficient to prevent attribute disclosure. We propose a novel privacy notion called t-closeness, which requires that the distribution of a sensitive attribute in any equivalence class is close to the distribution of the attribute in the overall table (i.e., the distance between the two distributions should be no more than a threshold t). We choose to use the earth mover distance measure for our t-closeness requirement. We discuss the rationale for t-closeness and illustrate its advantages through examples and experiments.},
    doi = {10.1109/ICDE.2007.367856}
 }
-
 
 @article{MachanavajjhalaEtAl:2007:l-Diversity,
    year = {2007},
@@ -91,36 +281,6 @@
    abstract = {Publishing data about individuals without revealing sensitive information about them is an important problem. In recent years, a new definition of privacy called k-anonymity has gained popularity. In a k-anonymized dataset, each record is indistinguishable from at least k − 1 other records with respect to certain identifying attributes. In this article, we show using two simple attacks that a k-anonymized dataset has some subtle but severe privacy problems. First, an attacker can discover the values of sensitive attributes when there is little diversity in those sensitive attributes. This is a known problem. Second, attackers often have background knowledge, and we show that k-anonymity does not guarantee privacy against attackers using background knowledge. We give a detailed analysis of these two attacks, and we propose a novel and powerful privacy criterion called ℓ-diversity that can defend against such attacks. In addition to building a formal foundation for ℓ-diversity, we show in an experimental evaluation that ℓ-diversity is practical and can be implemented efficiently.},
    doi = {10.1145/1217299.1217302}
 }
-
-
-
-@article{Kieseberg:2016:Doctor-in-the-Loop,
-   year = {2016},
-   author = {Kieseberg, Peter and Malle, Bernd and Frühwirt, Peter and Weippl, Edgar and Holzinger, Andreas},
-   title = {A tamper-proof audit and control system for the doctor in the loop},
-   journal = {Brain Informatics},
-   pages = {1-11},
-   abstract = {The “doctor in the loop” is a new paradigm in information-driven medicine, picturing the doctor as authority inside a loop supplying an expert system with information on actual patients, treatment results, and possible additional (side-)effects, including general information in order to enhance data-driven medical science, as well as giving back treatment advice to the doctor himself. While this approach can be very beneficial for new medical approaches like P4 medicine (personal, predictive, preventive, and participatory), it also relies heavily on the authenticity of the data and thus increases the need for secure and reliable databases. In this paper, we propose a solution in order to protect the doctor in the loop against responsibility derived from manipulated data, thus enabling this new paradigm to gain acceptance in the medical community. This work is an extension of the conference paper Kieseberg et al. (Brain Informatics and Health, 2015), which includes extensions to the original concept.},
-   doi = {10.1007/s40708-016-0046-2},
-   url = {http://dx.doi.org/10.1007/s40708-016-0046-2}
-}
-
-
-
-@article{Holzinger:2016:iML,
-   year = {2016},
-   author = {Holzinger, Andreas},
-   title = {Interactive Machine Learning for Health Informatics: When do we need the human-in-the-loop?},
-   journal = {Springer Brain Informatics (BRIN)},
-   volume = {3},
-   number = {2},
-   pages = {119-131},
-   abstract = {Machine learning (ML) is the fastest growing field in computer science, and health informatics is amongst the greatest challenges. The goal of ML is to develop algorithms which can learn and improve over time and can be used for predictions. Most ML researchers concentrate on automatic Machine Learning (aML), where great advances have been made, for example, in speech recognition, recommender systems, or autonomous vehicles. Automatic approaches greatly benefit from big data with many training sets. However, in the health domain, sometimes we are confronted with a small number of data sets or rare events, where aML-approaches suffer of insufficient training samples. Here interactive Machine Learning (iML) may be of help, having its roots in Reinforcement Learning (RL), Preference Learning (PL) and Active Learning (AL). The term iML is not yet well used, so we define it as algorithms that can interact with agents and can optimize their learning behaviour through these interactions, where the agents can also be human. This human-in-the-loop can be beneficial in solving computationally hard problems, e.g., subspace clustering, protein folding, or k-anonymization of health data, where human expertise can help to reduce an exponential search space through heuristic selection of samples. Therefore, what would otherwise be an NP-hard problem, reduces greatly in complexity through the input and the assistance of a human agent involved in the learning phase.},
-   keywords = {interactive Machine learning, health informatics},
-   doi = {10.1007/s40708-016-0042-6},
-   url = {http://dx.doi.org/10.1007/s40708-016-0042-6}
-}
-
 
 @article{Sweeney:2002:k-Anonymity,
    year = {2002},
@@ -159,12 +319,6 @@
    url = {http://spdp.di.unimi.it/papers/tkde_k-anonymity.pdf}
 }
 
-
-
-
-
-
-%[1]
 @incollection{HolzingerMalleGiuliani2014GraphExtraction,
    year = {2014},
    author = {Holzinger, Andreas and Malle, Bernd and Giuliani, Nicola},
@@ -180,7 +334,6 @@
    url = {https://online.tugraz.at/tug_online/voe_main2.getVollText?pDocumentNr=868952&pCurrPk=80830}
 }
 
-%[2]
 @incollection{HolzingerEtAl2014OnPCD,
    year = {2014},
    author = {Holzinger, Andreas and Malle, Bernd and Bloice, Marcus and Wiltgen, Marco and Ferri, Massimo and Stanganelli, Ignazio and Hofmann-Wellenhof, Rainer},
@@ -197,8 +350,6 @@
    url = {https://online.tugraz.at/tug_online/voe_main2.getVollText?pDocumentNr=974579&pCurrPk=83005}
 }
 
-
-%[3]
 @incollection{PreussEtAl2014TerrainCoverage,
    year = {2014},
    author = {Preuss, Michael and Dehmer, Matthias and Pickl, Stefan and Holzinger, Andreas},
@@ -214,7 +365,6 @@
    url = {https://online.tugraz.at/tug_online/voe_main2.getVollText?pDocumentNr=974170&pCurrPk=82989}
 }
 
-%[4]
 @incollection{Holzinger2014ExtravaganzaTutorial,
    year = {2014},
    author = {Holzinger, Andreas},
@@ -230,7 +380,6 @@
    url = {https://online.tugraz.at/tug_online/voe_main2.getVollText?pDocumentNr=868952&pCurrPk=80830}
 }
 
-%[5]
 @incollection{HolzingerOfnerDehmer2014GraphMining,
    year = {2014},
    author = {Holzinger, Andreas and Ofner, Bernhard and Dehmer, Matthias},
@@ -246,7 +395,6 @@
    url = {https://online.tugraz.at/tug_online/voe_main2.getVollText?pDocumentNr=974629&pCurrPk=83008}
 }
 
-%[6]
 @article{sweeney2002k,
 	title={k-anonymity: A model for protecting privacy},
 	author={Sweeney, Latanya},
@@ -258,7 +406,6 @@
 	publisher={World Scientific}
 }
 
-%[7]
 @incollection{ciriani2007kappa,
 	title={$\kappa$-anonymity},
 	author={Ciriani, Valentina and di Vimercati, S De Capitani and Foresti, Sara and Samarati, Pierangela},
@@ -268,7 +415,6 @@
 	publisher={Springer}
 }
 
-%[8]
 @article{aggarwal2005approximation,
 	title={Approximation algorithms for k-anonymity},
 	author={Aggarwal, Gagan and Feder, Tomas and Kenthapadi, Krishnaram and Motwani, Rajeev and Panigrahy, Rina and Thomas, Dilys and Zhu, An},
@@ -276,7 +422,6 @@
 	year={2005}
 }
 
-%[9]
 @article{chester2011k,
 	title={k-Anonymization of Social Networks by Vertex Addition.},
 	author={Chester, Sean and Kapron, Bruce and Ramesh, Ganesh and Srivastava, Gautam and Thomo, Alex and Venkatesh, S},
@@ -286,7 +431,6 @@
 	year={2011}
 }
 
-%[10]
 @inproceedings{kapron2011social,
 	title={Social network anonymization via edge addition},
 	author={Kapron, Bruce and Srivastava, Gautam and Venkatesh, S},
@@ -296,7 +440,6 @@
 	organization={IEEE}
 }
 
-%[11]
 @incollection{campan2009data,
 	title={Data and structural k-anonymity in social networks},
 	author={Campan, Alina and Truta, Traian Marius},
