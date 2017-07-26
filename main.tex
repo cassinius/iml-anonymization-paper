@@ -93,6 +93,10 @@ SBA Research gGmbH, Favoritenstraße 16, 1040 Wien \\
 \subsection{$\epsilon$  differential privacy}
 \label{ssect:eps_priv}
 
+Introduce randomness into the data.. can never be sure if specific answer is correct, nevertheless a certain fraction of ansers will statistically be correct.
+
+Laplace (double exponential) distribution.. close to 0 - large perturbation - further out smaller ...
+
 \subsection{k-anonymity (and beyond)}
 \label{ssect:k_anon}
 
@@ -111,9 +115,9 @@ Figure~\ref{fig:anon_categories} illustrates the original tabular concept of ano
 
 
 \begin{itemize}
-	\item \textbf{Personal identifiers} are data items which directly identify a person without having to cross-reference or further analyze them. Examples are first and last names, but even more so an (email) address or social security number (SSN). As personal identifiers are dangerous and cannot be generalized (see Figure~\ref{fig:gen_hierarchy}) in a meaningful way (e.g. one could generalize an email address by only retaining the mail provider fragment, but the result would not yield much usable information), this category of data is usually removed. The table shows this column in a red background color.
-	\item \textbf{Sensitive data,} also called 'payload', which is the kind of data we want to convey for statistics or research purposes. Examples for this category would be disease classification, drug intake or personal income level. This data shall be preserved in the anonymized dataset and can therefore not be deleted or generalized. The table shows this column in a green background color.
-	\item \textbf{Quasi identifiers (QI's)}, colored in the table with an orange background, are data that in themselves do not directly reveal the identity of a person, but might be used in aggregate to reconstruct it. For instance, \cite{sweeney2002k} mentioned that 87\% of U.S. citizens in 2002 had reported characteristics that made them vulnerable to identification based on just the 3 attributes \textit{zip code}, \textit{gender} and \textit{date of birth}. But although this data can be harmful in that respect, it might also hold vital information for the purpose of research (e.g. zip code could be of high value in a study on disease spread). The the actual point of all anonymization efforts is therefore to generalize this kind of information, which means to lower its level of granularity. As an example, one could generalize the ZIP codes 41074, 41075 and 41099 to an umbrella version 410**, as shown in Figure~\ref{fig:anonymized_clusters}.
+	\item \textbf{Personal identifiers} are data items which directly identify a person without having to cross-reference or further analyze them. Examples are email address or social security number (SSN). As personal identifiers are immediately dangerous, this category of data is usually removed.
+	\item \textbf{Sensitive data,} also called 'payload', represents information that is crucial for further data mining or research purposes. Examples for this category would be disease classification, drug intake or personal income. This data shall be preserved in the anonymized dataset and can therefore not be deleted or generalized.
+	\item \textbf{Quasi identifiers (QI's)}, are data which in themselves do not directly reveal the identity of a person, but might be used in aggregate to reconstruct it. For instance, \cite{sweeney2002k} reported in 2002 that the identity of 87\% of U.S. citizens could be uncovered via just the 3 attributes \textit{zip code}, \textit{gender} and \textit{date of birth}. Despite this danger, QI's may contain vital information to research applications (like ZIP code in a disease spread study); they are therefore generalized to an acceptable compromise between privacy (data loss) and information content (data utility).
 \end{itemize}
 
 
@@ -124,6 +128,15 @@ Figure~\ref{fig:anon_categories} illustrates the original tabular concept of ano
 \section{interactive Machine Learning}
 \label{sect:iML}
 
+Interactive ML algorithms adjust their inner workings by continuously interacting with an outside \textit{oracle}, drawing positive / negative reinforcement from this interaction \cite{2016HolzingeriML}. Such systems are especially useful for highly-personalized predictions or decision support \cite{2016KiesebergDITL}; moreover many real-world problems exhibit (super)exponential algorithmic runtime; in such cases human brains dwarf machines at approximating solutions and learning from very small samples, thus enabling us to 'intuit' solutions efficiently \cite{2016iMLExperiment}.
+
+By incorporating humans as oracles into this process, we can elicit background knowledge regarding specific use cases unknown to automatic algorithms \cite{WARE2001}. This however is highly dependent on the users' experience in a certain field as well as data / classification complexity; domain experts can of course be expected to contribute more valuable decision points than laymen; likewise, a low-dimensional dataset and simple classification tasks will result in higher quality human responses than convoluted problem sets.
+
+While the authors of \cite{Moque2012} propose a system that interacts with a user in order to set a certain k-factor and subsequently provides a report on information loss and Kurtosis of QI distributions, the algorithm is not \textit{interactive} by our definition in that it does not influence the inner workings of the algorithm during the learning phase. This is also true in case of the Cornell Anonymization Toolkit (Cat) \cite{Xiao2009}, which conducts a complete anonymization run and only then lets the user decide if they are content with the results. In contrast, our approach alters algorithmic parameters upon every (batch of) human decisions, letting the algorithm adapt in real-time.
+
+\cite{Loh2010} describe an approach incorporating humans into the anonymization process by allowing them to set constraints on attribute generalization; moreover they construct generalization hierarchies involving domain-specific ontologies. Although this technique marks a departure from wholesale automatic anonymization, it still lacks the dynamic human-computer interaction of our approach.
+
+Apart from the field of privacy, interactive ML is today present in a wide spectrum of applications, from bordering medical fields like protein interactions / clusterings \cite{Amershi2014} via on-demand group-creation in social networks \cite{Amershi2012} to even teaching algorithms suitable mappings from gestures to music-generating parameters \cite{Fiebrink2009}.
 
 
 % ==================================
@@ -132,34 +145,13 @@ Figure~\ref{fig:anon_categories} illustrates the original tabular concept of ano
 \section{Experiments}
 \label{sect:experiments}
 
-The following sections will describe our series of experiments in detail, encompassing the data source selected, the algorithm used as well as a description of the overall process employed to obtain our results.
+The following sections will describe our experiment in detail, encompassing the data source selected, the algorithm used as well as a description of the overall process employed to obtain our results.
 
 
 \subsection{Data} 
 \label{ssect:data}
 
-As input data we chose the adults dataset from the UCI Machine Learning repository which was generated from US census data of 1994 and contains approximately 32,000 entries; from those 30,162 were selected after preprocessing. Of the attributes (data columns) provided only one was deleted because it was also represented by a column containing its numerical mapping (education $=>$ education\_num). Figure~\ref{fig:adult_original_distribution} shows the attribute value distribution of the original input dataset with the exception of the sample weights.
-
-
-\begin{figure}[!t]
-	\begin{center}
-    \hspace*{-0.8cm}
-%		\includegraphics[width=1.1\textwidth]{figures/experiment/dist_initial_small}
-		\caption{Initial distribution of six selected data columns of the adult dataset.}
-		\label{fig:adult_original_distribution}
-	\end{center}
-\end{figure}
-
-As one can see, there are several attributes with one value clearly dominating the others; \textit{native-country} being the most prominent example with the entry for the United States dwarfing all other countries (which comes as no surprise given the data origin). As anonymization generalizes different countries together if necessary, it was interesting for the author to see how these distributions would change under a relatively large k-factor. Figure~\ref{fig:adult_anonymized_distribution} shows the same attribute distribution with its values anonymized by a factor of $k=19$. Although the dominance of the United states was successfully "broken" by this method, in several instances the \textit{generalized-to-all}-value (*) now skews the data set even more. Apart from the expected generalization information loss this is another reason why one would assume worse results from a machine learning classifier applied to an anonymized dataset.
-
-\begin{figure}[!t]
-	\begin{center}
-    	\hspace*{-0.8cm}
-%		\includegraphics[width=1.1\textwidth]{figures/experiment/dist_anonym_small}
-		\caption{Anonymized distribution of six selected data columns of the adult dataset, anonymization factor of k=19, equal weight for each attribute.}
-		\label{fig:adult_anonymized_distribution}
-	\end{center}
-\end{figure}
+We chose the adults dataset from the UCI Machine Learning repository which was generated from US census data of 1994 and contains approximately 50k entries; of those 30,162 were selected after preprocessing. Of the attributes (data columns) provided only one was deleted because it was also represented by a column containing its numerical mapping (education $=>$ education\_num). Figure~\ref{fig:adult_original_distribution} shows the attribute value distribution of the original input dataset with the exception of the sample weights.
 
 
 
@@ -191,6 +183,8 @@ And the normalized generalization information loss by:
 \begin{equation*}
 \text{NGIL}(G,S) = \frac{\text{GIL}(G,S)}{n \cdot (s+t)}
 \end{equation*}
+
+The main process...
 
 
 \subsection{Process}
@@ -247,7 +241,7 @@ To examine the impact of perturbation and anonymization of datasets on the quali
 		\hspace*{-0.8cm}
 		\includegraphics[width=1.0\textwidth]{figures/education_num.png}
 		\caption{Results on...}
-		\label{fig:results_income}
+		\label{fig:results_education}
 	\end{center}
 \end{figure}
 
@@ -257,7 +251,7 @@ To examine the impact of perturbation and anonymization of datasets on the quali
 		\hspace*{-0.8cm}
 		\includegraphics[width=1.0\textwidth]{figures/marital_status.png}
 		\caption{Results on...}
-		\label{fig:results_income}
+		\label{fig:results_marital}
 	\end{center}
 \end{figure}
 
@@ -281,6 +275,7 @@ To examine the impact of perturbation and anonymization of datasets on the quali
 \label{sect:conclusion}
 
 
+\clearpage
 \newpage
 
 \bibliographystyle{plain}
