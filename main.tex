@@ -50,7 +50,7 @@ SBA Research gGmbH, Favoritenstraße 16, 1040 Wien \\
 % ==================================
 \begin{abstract}
 
-Privacy aware Machine Learning is the discipline of applying Machine Learning techniques in such a way as to ensure the privacy of people during the process. This can most easily achieved by first anonymizing a dataset before releasing it for the purpose of statistical data mining or research; starting in June 2018, this will also be the only legally permitted way within the European Union to release data without granting any people involved the 'right to be forgotten', i.e. the right to have their data deleted on request. To governments, organizations and corporations however, this represents a serious impediment to research operations, since any anonymization results in a certain degree of information loss and therefore reduced data utility. Our work focuses on applying interactive Machine Learning to the process of anonymization based on the idea of eliciting human background knowledge to optimize an algorithms parameters as to which attributes are more or less valuable to preserve. We demonstrate that human input can yield measurably better classification results than automatic approaches, with much more room for future improvement.
+Privacy aware Machine Learning is the discipline of applying Machine Learning techniques in such a way as to protect personal identities during the process. This can most easily be achieved by first anonymizing a dataset before releasing it for the purpose of statistical data mining or research; starting in June 2018, this will also remain the sole legally permitted way within the European Union to release data without granting persons involved the 'right to be forgotten', i.e. the right to have their data deleted on request. To governments, organizations and corporations however, this represents a serious impediment to research operations, since any anonymization results in a certain degree of information loss and therefore reduced data utility. Our work focuses on applying interactive Machine Learning to the process of anonymization based on the idea of eliciting human background knowledge to optimize an algorithm's parameters as to which attributes are more or less deserving of preservation. Our experiments show that human knowledge can yield measurably better classification results than a rigid automatic approach, whereas the impact of interactive learning in the field of anonymization will largely depend on the experimental setup as well as suitable choices of application domain as well as human test subjects.
 
 
 \medskip
@@ -73,6 +73,10 @@ Privacy aware Machine Learning is the discipline of applying Machine Learning te
 \section{Introduction and Motivation}
 \label{sect:intro_moti}
 
+
+
+This original requirement of \textit{k-anonymity} \cite{Sweeney:2002:k-Anonymity} has since been extended by the concepts of \textit{l-diversity} \cite{MachanavajjhalaEtAl:2007:l-Diversity} (where every cluster must contain at least $l$ diverse sensitive values), \textit{t-closeness} \cite{LiEtAl:2007:t-closeness} (demanding that the local distribution over sensitive values must not diverge from its global distribution by more than a factor of $t$) as well as \textit{delta-presence} \cite{NergizClifton:2010:Delta-Presence} (which incorporates the background knowledge of a potential attacker). Although all of those concepts are interesting in their own right, for the sake of comparing interactive ML algorithms to  their fully automatic counterpart, we only took \textit{k-anonymity} into consideration (at least for this work).
+
 based on our initial PAML experiments \cite{}
 
 
@@ -91,10 +95,9 @@ Given the original tabular concept of anonymization, we will usually encounter t
 	\item \textbf{Quasi identifiers (QI's)}, are data which in themselves do not directly reveal the identity of a person, but might be used in aggregate to reconstruct it. For instance, \cite{sweeney2002k} reported in 2002 that the identity of 87\% of U.S. citizens could be uncovered via just the 3 attributes \textit{zip code}, \textit{gender} and \textit{date of birth}. Despite this danger, QI's may contain vital information to research applications (like ZIP code in a disease spread study); they are therefore generalized to an acceptable compromise between privacy (data loss) and information content (data utility).
 \end{itemize}
 
-Based on this categorization another formal concept of privacy was introduced as \textit{k-anonymity} \cite{Samarati:2001:kAnonymity}, in which a record is released only if its quasi-identifiers are indistinguishable from at least $k-1$ other entities in the dataset. This can be imagined like a clustering of data into so-called \textit{equivalence classes} of at least size $k$, with all internal QI's being generalized to the exact same level.
+Based on this categorization \textit{k-anonymity} \cite{Samarati:2001:kAnonymity} was introduced as a formal concept of privacy , in which a record is released only if its quasi-identifiers are indistinguishable from at least $k-1$ other entities in the dataset. This can be imagined like a clustering of data into so-called \textit{equivalence classes} of at least size $k$, with all internal QI's being generalized to the exact same level.
 
-This original requirement of \textit{k-anonymity} \cite{Sweeney:2002:k-Anonymity} has since been extended by the concepts of \textit{l-diversity} \cite{MachanavajjhalaEtAl:2007:l-Diversity} (where every cluster must contain at least $l$ diverse sensitive values), \textit{t-closeness} \cite{LiEtAl:2007:t-closeness} (demanding that the local distribution over sensitive values must not diverge from its global distribution by more than a factor of $t$) as well as \textit{delta-presence} \cite{NergizClifton:2010:Delta-Presence} (which incorporates the background knowledge of a potential attacker). Although all of those concepts are interesting in their own right, for the sake of comparing interactive ML algorithms to  their fully automatic counterpart, we only took \textit{k-anonymity} into consideration (at least for this work).
-
+Generalization in this setting means an abstraction of attribute value: e.g. given two ZIP codes of '8010' and '8045', we could first generalize to '80**', then incorporate another data point showing ZIP '8500' by generalizing the cluster to '8***', and finally merging with any other ZIP code to the highest level of 'all', also denoted as '*'.
 
 
 % ==================================
@@ -149,14 +152,13 @@ In our experiment, the task was to classify a people dataset on the target attri
 \subsection{Data} 
 \label{ssect:data}
 
-We chose the adults dataset from the UCI Machine Learning repository which was generated from US census data from 1994 and contains approximately 50k entries in it's original; after initial preprocessing we chose the first 500 complete data rows as our iML experimental data to be presented to users via a Web Browser UI. After obtaining bias / iml weights from the experiment, we chose the first 3k entries of the original data as the basis for producing 780 new, anonymized data sets. Although this might seem overly frugal on our part, we have asserted via random deletion of original data points that classifier performance remains stable for as little as 1.5k randomly selected rows. 
-Of the original attributes (data columns) provided 4 were deleted: 'capital-gain' \& 'capital-loss' (both were too skewed to be useful for humans), 'fnlwgt' (a mere weighting factor) as well as 'education' which was also represented by a column containing its numerical mapping ('education\_num').
+We chose the adults dataset from the UCI Machine Learning repository which was generated from US census data from 1994 and contains approximately 50k entries in it's original; after initial preprocessing we chose the first 500 complete data rows as our iML experimental data to be presented to users via a Web Browser UI. After obtaining bias / iml weights from the experiment, we chose the first 3k entries of the original data as the basis for producing 775 new, anonymized data sets. Although 3k rows might seem overly frugal on our part, we have asserted via random deletion of original data points that classifier performance remains stable for as little as 1.5k randomly selected rows. Of the original attributes (data columns) provided 4 were deleted: 'capital-gain' \& 'capital-loss' (both were too skewed to be useful for humans), 'fnlwgt' (a mere weighting factor) as well as 'education' which is also represented by a column containing its numerical mapping ('education\_num').
 
 
-\subsection{Algorithm}
+\subsection{Anonymization Algorithm}
 \label{ssect:algorithm}
 
-In order to conduct our experiments, it was necessary to choose an algorithm which would enable us to easily hook into its internal logic - we therefore chose a greedy clustering algorithm called \textit{SaNGreeA} (Social network greedy clustering) which was introduced by \cite{campan2009data} and implemented it in JavaScript. This enabled us to execute it within a browser environment during our iML experiments as well as server-side for batch-execution of all derived datasets later on.
+In order to conduct our experiments, it was necessary to choose an algorithm which would enable us to easily hook into its internal logic - we therefore chose a greedy clustering algorithm called \textit{SaNGreeA} (Social network greedy clustering) which was introduced by \cite{campan2009data} and implemented it in JavaScript. This enabled us to execute it within a browser environment during our iML experiments as well as server-side for batch-execution of all derived datasets afterwards.
 
 Besides its capacity to anonymize graph structures (which we did not utilize during this work), it is a relatively simple algorithm considering \textit{General information loss} - or GIL - during anonymization. This GIL can be interpreted by the sum of information loss occurring during generalization of continuous (range) as well as hierarchical attributes:
 
@@ -175,12 +177,9 @@ where:\\
 - $height(H_{C_j})$ denotes the height of the tree hierarchy $H_{C_j}$; \\
 
 
-The total generalization information loss is then given by:
+The following formulas then give the total / normalized GIL, respectively:
 \begin{equation*}
-\text{GIL}(G,S) = \sum_{j=1}^{v} \text{GIL}(cl_j)
-\end{equation*}
-And the normalized generalization information loss by:
-\begin{equation*}
+\text{GIL}(G,S) = \sum_{j=1}^{v} \text{GIL}(cl_j) \quad \textrm{and} \quad
 \text{NGIL}(G,S) = \frac{\text{GIL}(G,S)}{n \cdot (s+t)}
 \end{equation*}
 
@@ -195,11 +194,8 @@ Once our iML experiments had yielded enough weight vectors, we had to generate a
 
 \begin{enumerate}
 	\item Taking the first 5k rows of the original, preprocessed dataset as input and applying k-anonymization with a k-factor range of [5, 10, 20, 50, 100, 200] and 129 different weight vectors (equal, bias, iml) from our experiments on it, we produced 774 anonymized datasets (775 including the original).
-	%\item We then ran 4 different classifiers on it and computed precision, recall as well as F1 score. The four classifiers used were \textit{gradient boosting}, \textit{random forest}, \textit{logistic regression} and \textit{linear SVC}.
-	%\item From the obtained results we extracted the 3 attribute values most contributing to a "positive" ($>$50k) result as well as the top 3 attribute values indicating a "negative" ($<=$50k) prediction as depicted in Figure~\ref{fig:adult_important_columns}
-	%\item For each of these 6 attribute values, we subsequently deleted a specific percentage of data rows containing that value from the original dataset, resulting in 30 reduced datasets. The 5 percentages used were $0.2$, $0.4$, $0.6$, $0.8$ as well as $1.0$.
-	%\item To each of those datasets we re-applied the four chosen classifiers successively and recorded the respective impact on the quality of the classification result. The results can be seen in Figure~\ref{fig:adult_results_perturbation_top} and Figure~\ref{fig:adult_results_perturbation_bottom}.
-	%\item In order to measure the effects of k-anonymization on classifier performance, we used the SaNGreeA's GIL component described in the following section to generate datasets with a k-factor of $k=3$, $k=7$, $k=11$, $k=15$ as well as $k=19$. Furthermore, we used each of these settings with 3 different weight vectors: 1) equal weights for all attributes, 2) age information preferred ($\omega(age)=0.88$, $\omega(other\_attributes)=0.01$) and 3) race information preferred ($\omega(race)=0.88$, $\omega(other\_attributes)=0.01$). We then re-executed all classifiers on the resulting 15 datasets and recorded the respective results, which can be seen in Figure~\ref{fig:adult_results_anonymization}.
+	\item We then executed 4 different classifiers on all of the datasets and computed precision, recall as well as F1 score. The four classifiers used were \textit{linear SVC} (as a representative of Support Vector Machines), \textit{logistic regression} (gradient descent), \textit{gradient boosting} (ensemble, boosting) as well as \textit{random forest} (ensemble, bagging). While reading the datasets pertaining to the classification target of \textit{education}, the 14 different education levels present within the adult dataset were grouped into 4 categories 'pre-high-school', 'high school', '$<=$bachelors' and 'advanced studies'.
+	\item For each combination of classification target (\textit{income}, \textit{marital status}, \textit{education}) and weight category (\textit{equal}, \textit{bias}, \textit{iml}) we averaged the respective results. Results were plotted per target, as this allows better comparison between different classifiers. The leftmost point in all plots designates the original, un-anonymized dataset.
 \end{enumerate}
 
 
@@ -209,37 +205,42 @@ Once our iML experiments had yielded enough weight vectors, we had to generate a
 \section{Results \& Discussion}
 \label{sect:results}
 
-\begin{figure}[!h]
-	\begin{center}
-		\vspace{-1.0cm}
-		\hspace*{-0.8cm}
-		\includegraphics[width=1.0\textwidth]{figures/income.png}
-		\caption{Results on...}
-		\label{fig:results_income}
-	\end{center}
-\end{figure}
+As per the results in our initial PaML paper \cite{malle2016right} as well as hitherto unpublished subsequent studies we generally expected $1/x$ shaped curves for classifier performance as factors of $k$ are increasing. These expectations held to only a small degree; moreover for targets \textit{education} as well as \textit{income} there was no clear winner amongst the weight categories, with some achieving better or worse depending on a specific factor of $k$.
+
+We got the smoothest results for the \textit{marital status} target, with human bias winning consistently over equal weights as well as human interaction Figure~\ref{fig:results_marital}. We interpret this as stemming from the fact that there is a significant correlation between the attributes 'marital-status' and 'relationship' in the dataset, which led users to consciously overvalue the latter when prompted for their bias. It is not completely clear why the iML results were not able to keep up in this case, but it could have been caused by a l
 
 \begin{figure}[!h]
 	\begin{center}
-		\vspace{-1.0cm}
 		\hspace*{-0.8cm}
-		\includegraphics[width=1.0\textwidth]{figures/education_num.png}
-		\caption{Results on...}
-		\label{fig:results_education}
-	\end{center}
-\end{figure}
-
-\begin{figure}[!h]
-	\begin{center}
-		\vspace{-1.0cm}
-		\hspace*{-0.8cm}
-		\includegraphics[width=1.0\textwidth]{figures/marital_status.png}
-		\caption{Results on...}
+		\includegraphics[width=1.1\textwidth]{figures/marital_status.png}
+		\caption{Results on target \textit{marital status} - human bias wins consistently over both equal weights and human interaction with the algorithm.}
 		\label{fig:results_marital}
 	\end{center}
 \end{figure}
 
 
+\begin{figure}[!h]
+	\begin{center}
+		\hspace*{-0.8cm}
+		\includegraphics[width=1.1\textwidth]{figures/education_num.png}
+		\caption{Results on...}
+		\label{fig:results_education}
+	\end{center}
+\end{figure}
+
+
+\begin{figure}[!h]
+	\begin{center}
+		\hspace*{-0.8cm}
+		\includegraphics[width=1.1\textwidth]{figures/income.png}
+		\caption{Results on...}
+		\label{fig:results_income}
+	\end{center}
+\end{figure}
+
+As for the failure of iML to significantly outperform both the equal weight setting and especially human bias, we conjecture that our experimental setup has produced those effects: Since we wanted our users to conduct their experiment in real-time but needed a simple implementation of an anonymization algorithm to enable this interaction (which resulted in an $O(n^2)$ algorithmic runtime), we had to limit ourselves to just a tiny subset of data (500 rows, merely 1\% of the original dataset). This choice apparently resulted in generalizations proceeding far too quickly, reaching suppression ('all') levels prematurely, thereby denying our users sensible clustering choices. On the other hand, the effect could also stem from users not really trying to contribute to the experiments in a meaningful way; this effect could only be mitigated by selecting more serious users or choosing some less serious (more social?) application domain.
+
+Overall, we were also surprised that a seemingly absurd $k$-factor of 200 would still yield comparably good results (and in some cases even improve performance..).
 
 % ==================================
 %		PROBLEMS & CHALLENGES
@@ -247,8 +248,14 @@ Once our iML experiments had yielded enough weight vectors, we had to generate a
 \section{Open problems \& future challenges}
 \label{sect:op_fc}
 
+As iML for anonymization is still a fledgling sub-area in the larger fields of privacy as well as Machine Learning, there are certainly innumerable possibilities for even basic progress \& development. The following list is only a tiny subset of possible research venues we deem suitable for our own future work:
+
 \begin{itemize}
-	\item \textbf{Explain the unexpected behavior} for...
+	\item \textbf{Explain the unexpected behavior} of linear SVC on the \textit{income} target at high levels of $k$; probably by performing comparison studies on synthetically generated datasets.
+	\item \textbf{Faster algorithm.} Repeat the experiments with a faster algorithmic implementation so that we can use thousands of data points even in real time within a Browser: this would lead to more relaxed generalizations, allowing the user to make better interactive choices, thus presumably improving results by quite some margin.
+	\item \textbf{Expert domain, domain experts.} Choosing an expert domain like cancer studies in combination with proper experts like medical professionals, we would expect both human bias as well as iML results to significantly outperform a pre-defined weight vector.
+	\item \textbf{Different setting.} On the other hand, a more 'gamified' setting such as recommendations within a social network could motivate amateur users to get more immersed into the experiment, yielding better results even for mundane application tasks.
+	\item \textbf{Different data formats.} As Artificial Intelligence is slowly reaching maturity, it is now also applied to non-structured data like audio, images or even video. Since images are clearly relevant for medical research, and humans extremely efficient at processing them, studying interactive ML on visual data promises great scientific revenue. 
 \end{itemize}
 
 
@@ -258,9 +265,8 @@ Once our iML experiments had yielded enough weight vectors, we had to generate a
 \section{Conclusion}
 \label{sect:conclusion}
 
+Based on the emerging necessity of Privacy aware data processing, in this work we presented a fundamental approach of bringing human knowledge to bear on the task of anonymization via interactive Machine Learning. We devised an experiment involving clustering of data points with respect to human preference for attribute preservation and tested the resulting parameters on classification of anonymized people data into classes of \textit{marital status}, \textit{education} and \textit{income}. Our preliminary results show that human bias can definitely contribute to even mundane application areas, whereas more complex or convoluted tasks may require trained professionals or better data preparation (dimensionality reduction etc.). We also described our insights regarding experimental setups for iML and detailed future possible research venues.
 
-\clearpage
-\newpage
 
 \bibliographystyle{plain}
 \bibliography{references}
