@@ -50,7 +50,7 @@ SBA Research gGmbH, Favoritenstraße 16, 1040 Wien \\
 % ==================================
 \begin{abstract}
 
-Privacy aware Machine Learning is the discipline of applying Machine Learning techniques in such a way as to protect personal identities during the process. This can most easily be achieved by first anonymizing a dataset before releasing it for the purpose of statistical data mining or research; starting in June 2018, this will also remain the sole legally permitted way within the European Union to release data without granting persons involved the 'right to be forgotten', i.e. the right to have their data deleted on request. To governments, organizations and corporations however, this represents a serious impediment to research operations, since any anonymization results in a certain degree of information loss and therefore reduced data utility. Our work focuses on applying interactive Machine Learning to the process of anonymization based on the idea of eliciting human background knowledge to optimize an algorithm's parameters as to which attributes are more or less deserving of preservation. Our experiments show that human knowledge can yield measurably better classification results than a rigid automatic approach, whereas the impact of interactive learning in the field of anonymization will largely depend on the experimental setup as well as suitable choices of application domain as well as human test subjects.
+Privacy aware Machine Learning is the discipline of applying Machine Learning techniques in such a way as to protect personal identities during the process. This can most easily be achieved by first anonymizing a dataset before releasing it for the purpose of statistical data mining or research; starting in June 2018, this will also remain the sole legally permitted way within the European Union to release data without granting persons involved the 'right to be forgotten', i.e. the right to have their data deleted on request. To governments, organizations and corporations however, this represents a serious impediment to research operations, since any anonymization results in a certain degree of information loss and therefore reduced data utility. Our work focuses on applying interactive Machine Learning to the process of anonymization based on the idea of eliciting human background knowledge to optimize an algorithm's parameters as to which attributes are more or less valuable for preservation. Our experiments show that human knowledge can yield measurably better classification results than a rigid automatic approach, whereas the impact of interactive learning in the field of anonymization will largely depend on the experimental setup as well as suitable choices of application domains as well as human test subjects.
 
 
 \medskip
@@ -207,7 +207,7 @@ Once our iML experiments had yielded enough weight vectors, we had to generate a
 
 As per the results in our initial PaML paper \cite{malle2016right} as well as hitherto unpublished subsequent studies we generally expected $1/x$ shaped curves for classifier performance as factors of $k$ are increasing. These expectations held to only a small degree; moreover for targets \textit{education} as well as \textit{income} there was no clear winner amongst the weight categories, with some achieving better or worse depending on a specific factor of $k$.
 
-We got the smoothest results for the \textit{marital status} target, with human bias winning consistently over equal weights as well as human interaction Figure~\ref{fig:results_marital}. We interpret this as stemming from the fact that there is a significant correlation between the attributes 'marital-status' and 'relationship' in the dataset, which led users to consciously overvalue the latter when prompted for their bias. It is not completely clear why the iML results were not able to keep up in this case, but it could have been caused by a l
+We got the smoothest results for the \textit{marital status} target, with human bias winning consistently over equal weights as well as human interaction Figure~\ref{fig:results_marital}. We interpret this as stemming from the fact that there is a significant correlation between the attributes 'marital-status' and 'relationship' in the dataset, which led users to consciously overvalue the latter when prompted for their bias. It is not completely clear why the iML results were not able to keep up in this case, but since this seems to be a general phenomenon throughout our results, we will discuss this in a later paragraph.
 
 \begin{figure}[!h]
 	\begin{center}
@@ -219,21 +219,25 @@ We got the smoothest results for the \textit{marital status} target, with human 
 \end{figure}
 
 
+On classification target \textit{education}, bias still mostly outperforms iML-obtained attribute weights, with equal weights slightly winning out at very high factors of $k$. Although we assume that apparently important clues towards education might be misleading (like income or working hours), this cannot explain the difference between bias- and iML-based results. It has to be noted however, that results on this target are distinctly inferior to those of the other scenarios which might diminish the gap's significance.
+
 \begin{figure}[!h]
 	\begin{center}
 		\hspace*{-0.8cm}
 		\includegraphics[width=1.1\textwidth]{figures/education_num.png}
-		\caption{Results on...}
+		\caption{Results on target \textit{education} - we still see human bias performing slightly better than equal weights / iML in most cases of $k$, but not as consequently as above.}
 		\label{fig:results_education}
 	\end{center}
 \end{figure}
 
 
+Only on target \textit{income} did we observe a partly reversed order between human bias and iML - however at the cost of both being usually inferior to a simple setting with equal attribute weights. This is especially surprising because \textit{income} was the only binary classification task in our experiments, which should have given humans a slight advantage over the algorithm. On the other hand, human bias seems most susceptible to falling prey to certain stereotypes in the area of money (w.r.t. gender, race, marital status...), which would explain the reversal of results.
+
 \begin{figure}[!h]
 	\begin{center}
 		\hspace*{-0.8cm}
 		\includegraphics[width=1.1\textwidth]{figures/income.png}
-		\caption{Results on...}
+		\caption{Results on target \textit{income} - only in this scenario do we see iML-based results generally outperforming bias (except linear SVC), nevertheless incapable of outperforming the rigidly equal setting.}
 		\label{fig:results_income}
 	\end{center}
 \end{figure}
@@ -265,7 +269,7 @@ As iML for anonymization is still a fledgling sub-area in the larger fields of p
 \section{Conclusion}
 \label{sect:conclusion}
 
-Based on the emerging necessity of Privacy aware data processing, in this work we presented a fundamental approach of bringing human knowledge to bear on the task of anonymization via interactive Machine Learning. We devised an experiment involving clustering of data points with respect to human preference for attribute preservation and tested the resulting parameters on classification of anonymized people data into classes of \textit{marital status}, \textit{education} and \textit{income}. Our preliminary results show that human bias can definitely contribute to even mundane application areas, whereas more complex or convoluted tasks may require trained professionals or better data preparation (dimensionality reduction etc.). We also described our insights regarding experimental setups for iML and detailed future possible research venues.
+Based on the emerging necessity of Privacy aware data processing, in this work we presented a fundamental approach of bringing human knowledge to bear on the task of anonymization via interactive Machine Learning. We devised an experiment involving clustering of data points with respect to human preference for attribute preservation and tested the resulting parameters on classification of anonymized people data into classes of \textit{marital status}, \textit{education} and \textit{income}. Our preliminary results show that human bias can definitely contribute to even mundane application areas, whereas more complex or convoluted tasks may require trained professionals or better data preparation (dimensionality reduction etc.). We also described our insights regarding technical details for iML experiments and closed by outlining promising future research venues.
 
 
 \bibliographystyle{plain}
