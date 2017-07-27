@@ -50,7 +50,7 @@ SBA Research gGmbH, Favoritenstraße 16, 1040 Wien \\
 % ==================================
 \begin{abstract}
 
-Privacy aware Machine Learning is the discipline of applying Machine Learning techniques in such a way as to protect personal identities during the process. This can most easily be achieved by first anonymizing a dataset before releasing it for the purpose of statistical data mining or research; starting in June 2018, this will also remain the sole legally permitted way within the European Union to release data without granting persons involved the 'right to be forgotten', i.e. the right to have their data deleted on request. To governments, organizations and corporations however, this represents a serious impediment to research operations, since any anonymization results in a certain degree of information loss and therefore reduced data utility. Our work focuses on applying interactive Machine Learning to the process of anonymization based on the idea of eliciting human background knowledge to optimize an algorithm's parameters as to which attributes are more or less valuable for preservation. Our experiments show that human knowledge can yield measurably better classification results than a rigid automatic approach, whereas the impact of interactive learning in the field of anonymization will largely depend on the experimental setup as well as suitable choices of application domains as well as human test subjects.
+Privacy aware Machine Learning is the discipline of applying Machine Learning techniques in such a way as to protect and retain personal identities during the process. This is most easily achieved by first anonymizing a dataset before releasing it for the purpose of data mining or knowledge extraction. Starting in June 2018, this will also remain the sole legally permitted way within the EU to release data without granting people involved the 'right to be forgotten', i.e. the right to have their data deleted on request. To governments, organizations and corporations, this represents a serious impediment to research operations, since any anonymization results in a certain degree of reduced data utility. In this paper we propose applying human background knowledge via interactive Machine Learning to the process of anonymization; this is done by eliciting human preferences for preserving some attribute values over others in the light of specific tasks. Our experiments show that human knowledge can yield measurably better classification results than a rigid automatic approach. However, the impact of interactive learning in the field of anonymization will largely depend on the experimental setup, such as an appropriate choice of application domain as well as suitable test subjects.
 
 
 \medskip
@@ -73,18 +73,20 @@ Privacy aware Machine Learning is the discipline of applying Machine Learning te
 \section{Introduction and Motivation}
 \label{sect:intro_moti}
 
+In many sectors of today's data-driven economies technical progress is dependent on data mining, knowledge extraction from diverse sources, as well as the analysis of personal information. Especially the latter constitutes a vital building-block for business intelligence and the provision of personalized services, which are practically demanded by modern society. Often, the insights necessary for enabling organizations to provide these goods require publication, linkage, and systematic analysis of personal data sets from heterogeneous sources, exposing those data to the risk of leakage, with repercussions ranging from mild inconvenience (exposure of a social profile) to potentially catastrophic ramifications (leakage of health information to an employer).
 
+Living up to those challenges, governments around the world are contemplating or already enacting new laws concerning the handling of personal data. For instance, under the new European General Data Protection Regulations (\textit{GDPR}) taking effect on June 1st, 2018, customers are given a \textit{right-to-be-forgotten}, meaning that an organization is obligated to remove a customer's personal data upon request. An exception to this rule is only granted to organizations which anonymize data before analyzing them in any wholesale, automated fashion. This brings us to the field of Privacy aware machine learning (PaML), e.g. the application of ML algorithms only on previously anonymized data. Such anonymization can be provided by perturbing data (e.g. introduction noise into numerical values or \textit{differential privacy} \cite{dwork2008differential}) or \textit{k-anonymity} \cite{Sweeney:2002:k-Anonymity} (clustering of data into equivalence groups), which has since become the industry standard.
 
-This original requirement of \textit{k-anonymity} \cite{Sweeney:2002:k-Anonymity} has since been extended by the concepts of \textit{l-diversity} \cite{MachanavajjhalaEtAl:2007:l-Diversity} (where every cluster must contain at least $l$ diverse sensitive values), \textit{t-closeness} \cite{LiEtAl:2007:t-closeness} (demanding that the local distribution over sensitive values must not diverge from its global distribution by more than a factor of $t$) as well as \textit{delta-presence} \cite{NergizClifton:2010:Delta-Presence} (which incorporates the background knowledge of a potential attacker). Although all of those concepts are interesting in their own right, for the sake of comparing interactive ML algorithms to  their fully automatic counterpart, we only took \textit{k-anonymity} into consideration (at least for this work).
+The original requirement of \textit{k-anonymity} has since been extended by the concepts of \textit{l-diversity} \cite{MachanavajjhalaEtAl:2007:l-Diversity} (where every cluster must contain at least $l$ diverse sensitive values), \textit{t-closeness} \cite{LiEtAl:2007:t-closeness} (demanding that the local distribution over sensitive values must not diverge from its global distribution by more than a factor of $t$) as well as \textit{delta-presence} \cite{NergizClifton:2010:Delta-Presence} (which incorporates the background knowledge of a potential attacker). Although all of those concepts are interesting in their own right, for the sake of comparing interactive ML algorithms to  their fully automatic counterpart, we only took \textit{k-anonymity} into consideration (at least for this work).
 
-based on our initial PAML experiments \cite{}
+Based on our previous work on this topic \cite{malle2016right}, in which we conducted a comparison study of binary classification performance on perturbed (selective deletion) vs. wholesale anonymized data, in this paper we introduce the notion of interactive Machine Learning for ($k$-)anonymization.
 
 
 
 % ==================================
 %			  K-ANON
 % ==================================
-\section{k-anonymity (and beyond)}
+\section{k-Anonymity}
 \label{sect:k_anon}
 
 Given the original tabular concept of anonymization, we will usually encounter three different categories of attributes within a given dataset:
@@ -95,7 +97,7 @@ Given the original tabular concept of anonymization, we will usually encounter t
 	\item \textbf{Quasi identifiers (QI's)}, are data which in themselves do not directly reveal the identity of a person, but might be used in aggregate to reconstruct it. For instance, \cite{sweeney2002k} reported in 2002 that the identity of 87\% of U.S. citizens could be uncovered via just the 3 attributes \textit{zip code}, \textit{gender} and \textit{date of birth}. Despite this danger, QI's may contain vital information to research applications (like ZIP code in a disease spread study); they are therefore generalized to an acceptable compromise between privacy (data loss) and information content (data utility).
 \end{itemize}
 
-Based on this categorization \textit{k-anonymity} \cite{Samarati:2001:kAnonymity} was introduced as a formal concept of privacy , in which a record is released only if its quasi-identifiers are indistinguishable from at least $k-1$ other entities in the dataset. This can be imagined like a clustering of data into so-called \textit{equivalence classes} of at least size $k$, with all internal QI's being generalized to the exact same level.
+Based on this categorization \textit{k-anonymity} \cite{Samarati:2001:kAnonymity} was introduced as a formal concept of privacy, in which a record is released only if its quasi-identifiers are indistinguishable from at least $k-1$ other entities in the dataset. This can be imagined like a clustering of data into so-called \textit{equivalence groups} of at least size $k$, with all internal QI's being generalized to the exact same level.
 
 Generalization in this setting means an abstraction of attribute value: e.g. given two ZIP codes of '8010' and '8045', we could first generalize to '80**', then incorporate another data point showing ZIP '8500' by generalizing the cluster to '8***', and finally merging with any other ZIP code to the highest level of 'all', also denoted as '*'.
 
@@ -138,11 +140,11 @@ In our experiment, the task was to classify a people dataset on the target attri
 	\begin{center}
 		\vspace{-1.0cm}
 		\hspace*{-0.8cm}
-		\includegraphics[width=1.0\textwidth]{figures/iml_anon_screen1}
+		\includegraphics[width=0.8\textwidth]{figures/iml_anon_screen1}
 		
 		\vspace{1.0cm}
 		\hspace*{-0.8cm}
-		\includegraphics[width=1.0\textwidth]{figures/iml_anon_screen2}
+		\includegraphics[width=0.8\textwidth]{figures/iml_anon_screen2}
 		\caption{Two different implementations of the iML interface design.}
 		\label{fig:iml_UI}
 	\end{center}
@@ -211,8 +213,7 @@ We got the smoothest results for the \textit{marital status} target, with human 
 
 \begin{figure}[!h]
 	\begin{center}
-		\hspace*{-0.8cm}
-		\includegraphics[width=1.1\textwidth]{figures/marital_status.png}
+		\includegraphics[width=1\textwidth]{figures/marital_status.png}
 		\caption{Results on target \textit{marital status} - human bias wins consistently over both equal weights and human interaction with the algorithm.}
 		\label{fig:results_marital}
 	\end{center}
@@ -223,8 +224,7 @@ On classification target \textit{education}, bias still mostly outperforms iML-o
 
 \begin{figure}[!h]
 	\begin{center}
-		\hspace*{-0.8cm}
-		\includegraphics[width=1.1\textwidth]{figures/education_num.png}
+		\includegraphics[width=1\textwidth]{figures/education_num.png}
 		\caption{Results on target \textit{education} - we still see human bias performing slightly better than equal weights / iML in most cases of $k$, but not as consequently as above.}
 		\label{fig:results_education}
 	\end{center}
@@ -235,8 +235,7 @@ Only on target \textit{income} did we observe a partly reversed order between hu
 
 \begin{figure}[!h]
 	\begin{center}
-		\hspace*{-0.8cm}
-		\includegraphics[width=1.1\textwidth]{figures/income.png}
+		\includegraphics[width=1\textwidth]{figures/income.png}
 		\caption{Results on target \textit{income} - only in this scenario do we see iML-based results generally outperforming bias (except linear SVC), nevertheless incapable of outperforming the rigidly equal setting.}
 		\label{fig:results_income}
 	\end{center}
